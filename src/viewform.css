@@ -95,3 +95,28 @@ list-view:hover{
 }
 
 
+/*active time button  */
+.buttonactive {
+	
+    -fx-background-color:linear-gradient(to bottom right ,#7D73DA  ,#9E95F0)  ; /* Default background color */
+    -fx-border-radius: 5px; /* Rounded corners */
+	-fx-border-color:#060C58;
+	-fx-border-radius:2px;
+    -fx-cursor: hand; /* Cursor style (hand) */
+    -fx-transition: background-color 0.3s;
+}
+
+.buttonactive:hover {
+    -fx-background-color: #2315AF /* Darker blue on hover */
+	
+}
+
+.btnLogout{
+	-fx-background-color:#184ED4;
+	-fx-border-radius:2px;
+    -fx-cursor: hand; /* Cursor style (hand) */
+    -fx-transition: background-color 0.3s;
+}
+.btnLogout:hover{
+	-fx-background-color:#850EC1;
+}

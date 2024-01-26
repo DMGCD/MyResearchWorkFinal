@@ -39,7 +39,7 @@
                         <Font name="SimSun" size="32.0" />
                      </font>
                   </Label>
-                  <Label layoutX="96.0" layoutY="106.0" styleClass="textlable" stylesheets="@../viewform.css" text="Riminder On Time" textFill="#754fdd">
+                  <Label layoutX="96.0" layoutY="106.0" styleClass="textlable" stylesheets="@../viewform.css" text="Reminder On Time" textFill="#754fdd">
                      <font>
                         <Font name="Tahoma Bold" size="16.0" />
                      </font>
@@ -54,9 +54,17 @@
                         <FontAwesomeIconView glyphName="MINUS" size="1.5em" wrappingWidth="18.428571701049805" />
                      </graphic>
                   </Button>
-                  <Button layoutX="3.0" layoutY="451.0" mnemonicParsing="false" onAction="#btnSystemOntimeAction" text="On time pc">
+                  <Button layoutX="3.0" layoutY="451.0" mnemonicParsing="false" onAction="#btnSystemOntimeAction" styleClass="buttonactive" stylesheets="@../viewform.css" text="On time pc" textFill="#fcf8f8" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="451.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
                      <graphic>
-                        <FontAwesomeIconView glyphName="MINUS" />
+                        <FontAwesomeIconView fill="#f8f5f5" />
+                     </graphic>
+                  </Button>
+                  <Button layoutX="354.0" layoutY="455.0" mnemonicParsing="false" styleClass="btnLogout" stylesheets="@../viewform.css" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="#f8f6f6" glyphName="SIGN_OUT" size="2em" />
                      </graphic>
                   </Button>
                </children></AnchorPane>
