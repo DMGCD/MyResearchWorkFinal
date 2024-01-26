@@ -1,0 +1,97 @@
+.leftForm{
+	-fx-background-color: linear-gradient(to bottom right ,#6B52C1, #8F84B7);
+}
+
+.leftForm:hover{
+	-fx-background-color: linear-gradient(to bottom right ,#060357  ,#192695);
+	-fx-transition: -fx-background-color 0.3s;
+	-fx-fill: #fff;
+	
+}
+
+.rightForm{
+	-fx-background-color: #fff;
+}
+
+
+
+.CSU{
+	-fx-background-color: transparent;
+	-fx-border-color:#F8F7EE;
+	-fx-border-width:0px 0px 5px 0px;
+	
+}
+
+.time{
+	-fx-background-color:transparent;
+	-fx-font-size:22px;
+	-fx-text-fill:#3003A8;
+	
+	-fx-border-color:#24AAD5;
+	-fx-border-width:0px 0px 0px 2px;
+	-fx-padding:2px;
+}
+.textlable{
+	
+	-fx-background-color: transparent;
+	
+	-fx-border-color:#650C83;
+	-fx-border-width:0px 0px 3px 0px;
+	-fx-padding:5px;
+}
+.BREAK{
+	-fx-background-color: transparent;
+	-fx-border-color:#060501;
+	-fx-border-width:0px 0px 0px 5px;
+	-fx-padding:5px;
+	
+}
+.minimize{
+	-fx-background-color:transparent;
+	-fx-cursor:hand; 
+}
+.minimize:hover{
+	-fx-background-color: #ddd;
+}
+
+
+
+.list-view {
+    -fx-background-color: #C469E6; /* Background color */
+    -fx-border-color: #6614A7; /* Border color */
+    -fx-border-width: 3px; /* Border width */
+}
+
+.list-cell {
+    -fx-padding: 5px 10px; /* Padding for each cell */
+    -fx-background-color: #CEAEE7; /* Cell background color */
+    -fx-border-color: #d0d0d0; /* Cell border color */
+    -fx-border-width: 0 0 1 0; /* Border at the bottom of each cell */
+}
+
+
+.list-view:focused {
+    -fx-faint-focus-color:#010005; /* Remove focus border */
+}
+list-view:hover{
+	
+	-fx-background-color:#241A4A;
+}
+
+.list-view:horizontal {
+    -fx-background-insets: 0;
+}
+
+.list-view:vertical {
+    -fx-background-insets: 0;
+}
+
+.list-view .scroll-bar {
+    -fx-background-color: #11021C; /* Scroll bar background color */
+}
+
+.list-view .scroll-bar:horizontal .track {
+    -fx-background-color: #11021C; /* Horizontal scroll track color */
+}
+
+
