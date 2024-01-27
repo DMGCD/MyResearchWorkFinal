@@ -120,3 +120,28 @@ list-view:hover{
 .btnLogout:hover{
 	-fx-background-color:#850EC1;
 }
+
+
+
+/* Styles for the ComboBox */
+.combo{
+    -fx-background-color: #ffffff; /* Background color */
+    -fx-border-color: #cccccc; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 5px; /* Border radius */
+}
+
+
+
+
+/* Styles for the list view in the ComboBox */
+.combo.list-view {
+    -fx-background-color: #ffffff; /* List view background color */
+    -fx-border-color: #5858D5; /* List view border color */
+    -fx-border-width: 1px; /* List view border width */
+    -fx-border-radius: 0PX 0PX 0px 5px; /* List view border radius */
+}
+
+
+
+

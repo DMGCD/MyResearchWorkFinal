@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -72,6 +73,17 @@
                         <FontAwesomeIconView fill="#f8f6f6" glyphName="SIGN_OUT" size="2em" />
                      </graphic>
                   </Button>
+                  <Label layoutX="25.0" layoutY="273.0" text="HOW TO ME REMINDING  YOU ?">
+                     <font>
+                        <Font name="Calisto MT Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cmbxreminding" layoutX="170.0" layoutY="312.0" onAction="#cmbxremindingOnAction" opacity="0.94" prefHeight="28.0" prefWidth="194.0" promptText="SELECT REMIND WAY " stylesheets="@../viewform.css">
+                     <styleClass>
+                        <String fx:value="combo" />
+                        <String fx:value="combo-box" />
+                     </styleClass>
+                  </ComboBox>
                </children></AnchorPane>
          </children>
       </AnchorPane>

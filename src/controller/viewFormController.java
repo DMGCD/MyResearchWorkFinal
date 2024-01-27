@@ -1,11 +1,13 @@
 package controller;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -29,10 +31,12 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
-public class viewFormController implements KeyListener {
+public class viewFormController {
     public Button btnActiveOnTime;
     public Label lbltimecurrent;
+    public ComboBox cmbxreminding;
     @FXML
     private ListView<runingappTM> lstRuningapp;
     @FXML
@@ -42,10 +46,11 @@ public class viewFormController implements KeyListener {
     private Label lblontimemaching;
 
    LocalTime date1;
+
     public void initialize(){
         listLoadRunningApp();
         setTimeC();
-
+        remidway();
         LocalTime currentTime = LocalTime.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         date1 = LocalTime.parse(currentTime.format(dateFormatter));
@@ -100,7 +105,7 @@ public class viewFormController implements KeyListener {
 
         notifi.graphic(imgV);
 
-        notifi.text("your Computer are active among "+dura);
+        notifi.text("YOU ARE WORK WITH :->: "+dura);
         notifi.title("REMINDER ARE ACTIVE TIME !");
         notifi.hideAfter(javafx.util.Duration.seconds(2));
         notifi.position(Pos.BASELINE_RIGHT);
@@ -143,41 +148,83 @@ public viewFormController(){
 
         ActionListener al =new ActionListener() {
             Point lastPoint;
+            int i=0;
+            int j=0;
+            long x=0;
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
+                try {
+                    Thread.sleep(1000);
 
 
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+// mouse moved identification
                 Point p =MouseInfo.getPointerInfo().getLocation();
                 if(!p.equals(lastPoint)){
-                    System.out.println("mouseMoved");
+                    System.out.println(i);
+
+                    i++;
+
+
+
                 }
+
+                if(i>=0 && i<=5){
+                    x-=2;
+                }
+
+                if(x>=20){
+                  //  System.out.println("take a break!");
+                    x=0;
+                    i=0;
+
+
+                }
+                else if(x==0 || x<2){
+                  //  System.out.println("user not hear!");
+                }
+
                 lastPoint=p;
             }
+
+
 
 
         };
     Timer timer = new Timer(100, al);
     timer.start();
-}
-// keyboard event
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("pressed");
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        System.out.println("release");
-    }
-
-
-
 
 
 }
+    public  String [] remind={"All 20 Minites Reminding Me","System process Remind Me"};
+    public void cmbxremindingOnAction(ActionEvent event) {
+String remindr= (String) cmbxreminding.getSelectionModel().getSelectedItem();
+
+
+// selected reminder type
+        if (remind[0]==remindr) {
+            System.out.println("All 20 Minites Reminding Me");
+        }
+        else{
+            System.out.println("x");
+        }
+
+
+    }
+
+    public void remidway(){
+        cmbxreminding.setItems(FXCollections.observableArrayList(remind));
+    }
+
+
+
+
+
+}
+
+
+
+
+
