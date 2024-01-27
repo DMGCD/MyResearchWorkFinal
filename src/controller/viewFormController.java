@@ -15,16 +15,22 @@ import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import tm.runingappTM;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class viewFormController {
+public class viewFormController implements KeyListener {
     public Button btnActiveOnTime;
     public Label lbltimecurrent;
     @FXML
@@ -112,7 +118,7 @@ public class viewFormController {
 
     // real time display in lable
     public void setTimeC(){
-      final Thread thread =  new Thread(()->{
+       Thread thread =  new Thread(()->{
           SimpleDateFormat simpleDateFormat =new SimpleDateFormat("hh:mm:ss a");
 
           while(true){
@@ -130,4 +136,48 @@ public class viewFormController {
         });
 thread.start();
     }
+
+    // Event of mouse
+
+public viewFormController(){
+
+        ActionListener al =new ActionListener() {
+            Point lastPoint;
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+
+
+                Point p =MouseInfo.getPointerInfo().getLocation();
+                if(!p.equals(lastPoint)){
+                    System.out.println("mouseMoved");
+                }
+                lastPoint=p;
+            }
+
+
+        };
+    Timer timer = new Timer(100, al);
+    timer.start();
+}
+// keyboard event
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("pressed");
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        System.out.println("release");
+    }
+
+
+
+
+
 }
