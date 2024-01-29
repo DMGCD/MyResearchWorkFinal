@@ -1,9 +1,9 @@
 .leftForm{
-	-fx-background-color: linear-gradient(to bottom right ,#6B52C1, #8F84B7);
+	-fx-background-color: linear-gradient(to bottom right ,#030637  ,#3C0753);
 }
 
 .leftForm:hover{
-	-fx-background-color: linear-gradient(to bottom right ,#060357  ,#192695);
+	-fx-background-color: linear-gradient(to bottom right ,#3C0753  ,#720455);
 	-fx-transition: -fx-background-color 0.3s;
 	-fx-fill: #fff;
 	
@@ -19,7 +19,7 @@
 	-fx-background-color: transparent;
 	-fx-border-color:#F8F7EE;
 	-fx-border-width:0px 0px 5px 0px;
-	
+	-fx-padding:5px;
 }
 
 .time{
@@ -36,13 +36,14 @@
 	-fx-background-color: transparent;
 	
 	-fx-border-color:#650C83;
-	-fx-border-width:0px 0px 3px 0px;
+	-fx-border-width:0px 0px 0px 0px;
 	-fx-padding:5px;
 }
 .BREAK{
 	-fx-background-color: transparent;
-	-fx-border-color:#060501;
-	-fx-border-width:0px 0px 0px 5px;
+	-fx-text-fill: linear-gradient(to bottom right ,#030637  ,#3C0753);
+	-fx-border-color:linear-gradient(to bottom right ,#030637  ,#3C0753);
+	-fx-border-width:0px 0px 5px 0px;
 	-fx-padding:5px;
 	
 }
@@ -98,7 +99,7 @@ list-view:hover{
 /*active time button  */
 .buttonactive {
 	
-    -fx-background-color:linear-gradient(to bottom right ,#7D73DA  ,#9E95F0)  ; /* Default background color */
+    -fx-background-color:linear-gradient(to bottom right ,#030637  ,#3C0753)  ; /* Default background color */
     -fx-border-radius: 5px; /* Rounded corners */
 	-fx-border-color:#060C58;
 	-fx-border-radius:2px;
@@ -124,23 +125,23 @@ list-view:hover{
 
 
 /* Styles for the ComboBox */
-.combo{
-    -fx-background-color: #ffffff; /* Background color */
-    -fx-border-color: #cccccc; /* Border color */
-    -fx-border-width: 1px; /* Border width */
-    -fx-border-radius: 5px; /* Border radius */
+/*.combo{
+    -fx-background-color: #ffffff; 
+    -fx-border-color: #cccccc; 
+    -fx-border-width: 1px; 
+    -fx-border-radius: 5px; 
 }
 
 
 
 
-/* Styles for the list view in the ComboBox */
+
 .combo.list-view {
-    -fx-background-color: #ffffff; /* List view background color */
-    -fx-border-color: #5858D5; /* List view border color */
-    -fx-border-width: 1px; /* List view border width */
-    -fx-border-radius: 0PX 0PX 0px 5px; /* List view border radius */
-}
+    -fx-background-color: #ffffff; 
+    -fx-border-color: #5858D5; 
+    -fx-border-width: 1px;
+    -fx-border-radius: 0PX 0PX 0px 5px; 
+}*/
 
 
 

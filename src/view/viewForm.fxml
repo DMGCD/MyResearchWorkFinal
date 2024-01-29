@@ -13,46 +13,46 @@
    <children>
       <AnchorPane prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="509.0" prefWidth="300.0" styleClass="leftForm" stylesheets="@../viewform.css">
+            <AnchorPane prefHeight="509.0" prefWidth="300.0" styleClass="leftForm" stylesheets="@../viewform.css" AnchorPane.bottomAnchor="0.0">
                <children>
-                  <FontAwesomeIconView fill="#f2ebeb" glyphName="BELL" layoutX="21.0" layoutY="140.0" size="8em" styleClass="bell" />
-                  <Label layoutX="21.0" layoutY="14.0" styleClass="CSU" stylesheets="@../viewform.css" text="COMPUTER USER'S    " textFill="#fcf7f7">
+                  <FontAwesomeIconView fill="#f2ebeb" glyphName="BELL" layoutX="15.0" layoutY="133.42856979370117" size="5em" styleClass="bell" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="82.0" />
+                  <Label layoutX="13.0" layoutY="17.0" styleClass="CSU" stylesheets="@../viewform.css" text="COMPUTER USER'S" textFill="#fcf7f7" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="17.0">
                      <font>
-                        <Font name="Tahoma" size="28.0" />
+                        <Font name="Tahoma" size="30.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="lstRuningapp" layoutX="103.0" layoutY="215.0" opacity="0.68" prefHeight="269.0" prefWidth="172.0" stylesheets="@../viewform.css">
+                  <ListView fx:id="lstRuningapp" layoutX="7.0" layoutY="206.0" opacity="0.68" prefHeight="285.0" prefWidth="284.0" stylesheets="@../viewform.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="7.0">
                      <styleClass>
                         <String fx:value="list-cell" />
                         <String fx:value="list-view" />
                      </styleClass></ListView>
-                  <Label layoutX="7.0" layoutY="185.0" text="Task manager Installed app and services" textFill="#fcf7f7">
+                  <Label layoutX="2.0" layoutY="181.0" text="Task Manager-Running App(s) &amp; Service(s)" textFill="#fcf7f7" AnchorPane.leftAnchor="7.0">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbltimecurrent" layoutX="150.0" layoutY="97.0" text="Label" textFill="#fafafa">
+                  <Label fx:id="lbltimecurrent" layoutX="124.0" layoutY="97.0" text="Label" textFill="#fafafa">
                      <font>
-                        <Font name="Felix Titling" size="19.0" />
+                        <Font name="Segoe UI" size="30.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="303.0" prefHeight="509.0" prefWidth="400.0" styleClass="rightForm" stylesheets="@../viewform.css">
+            <AnchorPane layoutX="303.0" prefHeight="509.0" prefWidth="400.0" styleClass="rightForm" stylesheets="@../viewform.css" AnchorPane.bottomAnchor="0.0">
                <children>
-                  <Label layoutX="3.0" layoutY="49.0" styleClass="BREAK" stylesheets="@../viewform.css" text="BREAK REMINDER">
+                  <Label layoutX="1.0" layoutY="17.0" styleClass="BREAK" stylesheets="@../viewform.css" text="BREAK REMINDER" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="17.0">
                      <font>
-                        <Font name="SimSun" size="32.0" />
+                        <Font name="Tahoma" size="30.0" />
                      </font>
                   </Label>
-                  <Label layoutX="96.0" layoutY="106.0" styleClass="textlable" stylesheets="@../viewform.css" text="Reminder On Time" textFill="#754fdd">
+                  <Label layoutX="7.0" layoutY="106.0" styleClass="textlable" stylesheets="@../viewform.css" text="Reminder On Time" textFill="#754fdd" AnchorPane.leftAnchor="1.0">
                      <font>
-                        <Font name="Tahoma Bold" size="16.0" />
+                        <Font name="Segoe UI" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblontimemaching" layoutX="267.0" layoutY="106.0" styleClass="time" stylesheets="@../viewform.css" text="Label">
+                  <Label fx:id="lblontimemaching" layoutX="150.0" layoutY="104.0" styleClass="time" stylesheets="@../viewform.css" text="Label">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Segoe UI" size="16.0" />
                      </font>
                   </Label>
                   <Button layoutX="342.0" layoutY="4.0" mnemonicParsing="false" onAction="#btnminimizeOnAction" prefHeight="26.0" prefWidth="48.0" styleClass="minimize" stylesheets="@../viewform.css" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
@@ -60,30 +60,38 @@
                         <FontAwesomeIconView glyphName="MINUS" size="1.5em" wrappingWidth="18.428571701049805" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnActiveOnTime" layoutX="3.0" layoutY="469.0" mnemonicParsing="false" onAction="#btnSystemOntimeAction" prefHeight="36.0" prefWidth="119.0" styleClass="buttonactive" stylesheets="@../viewform.css" text="On time pc" textFill="#fcf8f8" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="469.0">
+                  <Button fx:id="btnActiveOnTime" layoutX="3.0" layoutY="463.0" mnemonicParsing="false" onAction="#btnSystemOntimeAction" prefHeight="37.0" prefWidth="161.0" styleClass="buttonactive" stylesheets="@../viewform.css" text=" My Active Time" textFill="WHITE" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="4.0" AnchorPane.topAnchor="463.0">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Segoe UI" size="14.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView fill="#f8f5f5" />
+                        <FontAwesomeIconView fill="#f5f4f4" glyphName="HOURGLASS" size="1.5em" />
                      </graphic>
                   </Button>
-                  <Button layoutX="354.0" layoutY="455.0" mnemonicParsing="false" onAction="#btnLogOutOnAction" styleClass="btnLogout" stylesheets="@../viewform.css" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="4.0">
+                  <Button layoutX="354.0" layoutY="455.0" mnemonicParsing="false" onAction="#btnLogOutOnAction" styleClass="btnLogout" stylesheets="@../viewform.css" text="Logout" textFill="#f5f5f5" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="4.0">
                      <graphic>
-                        <FontAwesomeIconView fill="#f8f6f6" glyphName="SIGN_OUT" size="2em" />
+                        <FontAwesomeIconView fill="#f8f6f6" glyphName="POWER_OFF" size="2em" />
                      </graphic>
-                  </Button>
-                  <Label layoutX="25.0" layoutY="273.0" text="HOW TO ME REMINDING  YOU ?">
                      <font>
-                        <Font name="Calisto MT Bold" size="18.0" />
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="25.0" layoutY="273.0" text="HOW TO REMIND YOU ?" AnchorPane.leftAnchor="1.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmbxreminding" layoutX="170.0" layoutY="312.0" onAction="#cmbxremindingOnAction" opacity="0.94" prefHeight="28.0" prefWidth="194.0" promptText="SELECT REMIND WAY " stylesheets="@../viewform.css">
+                  <ComboBox fx:id="cmbxreminding" layoutX="173.0" layoutY="302.0" onAction="#cmbxremindingOnAction" opacity="0.94" prefHeight="30.0" prefWidth="200.0" promptText="SELECT REMIND WAY " stylesheets="@../viewform.css" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="200.0">
                      <styleClass>
                         <String fx:value="combo" />
                         <String fx:value="combo-box" />
                      </styleClass>
                   </ComboBox>
+                  <Label fx:id="lblStopwatched" layoutX="10.0" layoutY="179.0" text="Label" AnchorPane.leftAnchor="1.0">
+                     <font>
+                        <Font name="Segoe UI" size="30.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
          </children>
       </AnchorPane>

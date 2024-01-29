@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,44 +22,38 @@ import tm.runingappTM;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Objects;
-
 public class viewFormController {
     public Button btnActiveOnTime;
     public Label lbltimecurrent;
     public ComboBox cmbxreminding;
+    public Label lblStopwatched;
     @FXML
     private ListView<runingappTM> lstRuningapp;
     @FXML
     private AnchorPane mainformroot;
-
     @FXML
     private Label lblontimemaching;
-
    LocalTime date1;
 
     public void initialize(){
+
         listLoadRunningApp();
         setTimeC();
         remidway();
         LocalTime currentTime = LocalTime.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
         date1 = LocalTime.parse(currentTime.format(dateFormatter));
 
         lblontimemaching.setText(currentTime.format(dateFormatter));
     }
-
     @FXML
     void btnminimizeOnAction(ActionEvent event) {
         Stage stage=(Stage)mainformroot.getScene().getWindow();
@@ -87,40 +83,38 @@ public class viewFormController {
           throw new RuntimeException(e);
       }
   }
-
     public void btnSystemOntimeAction(ActionEvent actionEvent) {
         LocalTime currentTime = LocalTime.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
         LocalTime date2 = LocalTime.parse(currentTime.format(dateFormatter));
       //get duration  Scene are on and use
         Duration duration= Duration.between(date2,date1);
         String dura = String.valueOf(duration);
         dura =dura.substring(3,dura.length());
         Image img = new Image("image/c.png");
-
         ImageView imgV =new ImageView(img);
         imgV.setFitHeight(50);
         imgV.setFitWidth(50);
         Notifications notifi = Notifications.create();
-
         notifi.graphic(imgV);
-
-        notifi.text("YOU ARE WORK WITH :->: "+dura);
+        notifi.text("YOU ARE WORK WITH : "+dura);
         notifi.title("REMINDER ARE ACTIVE TIME !");
         notifi.hideAfter(javafx.util.Duration.seconds(2));
         notifi.position(Pos.BASELINE_RIGHT);
-
         notifi.darkStyle();
         notifi.show();
-
-
-
     }
-
+// Sound For Notification
+//    private void playNotificationSound()  {
+//
+//            // Replace "notification_sound.mp3" with the actual name of your sound file
+//            String soundFile = "c.png";
+//            String path = getClass().getResource(soundFile).getPath().toString();
+//        System.out.println(path);
+//    }
     public void btnLogOutOnAction(ActionEvent actionEvent) {
         System.exit(0);
     }
-
     // real time display in lable
     public void setTimeC(){
        Thread thread =  new Thread(()->{
@@ -141,20 +135,19 @@ public class viewFormController {
         });
 thread.start();
     }
-
     // Event of mouse
-
 public viewFormController(){
 
         ActionListener al =new ActionListener() {
             Point lastPoint;
-            int i=0;
+            int i=1;
             int j=0;
             long x=0;
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 try {
-                    Thread.sleep(1000);
+                    x+=10;
+                    Thread.sleep(5000);
 
 
                 } catch (InterruptedException ex) {
@@ -164,37 +157,27 @@ public viewFormController(){
                 Point p =MouseInfo.getPointerInfo().getLocation();
                 if(!p.equals(lastPoint)){
                     System.out.println(i);
+                    if(i==5){
+
+                        if(i==2){
+
+
+                        }
+
+
+
+
+                    }
 
                     i++;
 
-
-
                 }
-
-                if(i>=0 && i<=5){
-                    x-=2;
-                }
-
-                if(x>=20){
-                  //  System.out.println("take a break!");
-                    x=0;
-                    i=0;
-
-
-                }
-                else if(x==0 || x<2){
-                  //  System.out.println("user not hear!");
-                }
-
                 lastPoint=p;
             }
-
-
-
-
         };
     Timer timer = new Timer(100, al);
     timer.start();
+
 
 
 }
@@ -204,20 +187,48 @@ String remindr= (String) cmbxreminding.getSelectionModel().getSelectedItem();
 
 
 // selected reminder type
-        if (remind[0]==remindr) {
-            System.out.println("All 20 Minites Reminding Me");
+boolean x =false;
+
+        if(remindr.equals(remind[0])){
+            alt.setCycleCount(Timeline.INDEFINITE);
+            alt.play();
+            x=true;
+            Object source = event.getSource();
+
         }
         else{
-            System.out.println("x");
+            alt.stop();
         }
+
 
 
     }
-
     public void remidway(){
         cmbxreminding.setItems(FXCollections.observableArrayList(remind));
     }
+        Timeline alt =new Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event -> {
 
+            Image img = new Image("image/c.png");
+
+            ImageView imgV =new ImageView(img);
+            imgV.setFitHeight(50);
+            imgV.setFitWidth(50);
+            Notifications notifi = Notifications.create();
+
+            notifi.graphic(imgV);
+
+            notifi.text("Take a Break For Protact Your Helthy.....");
+            notifi.title("MODE : All 20 Minites Reminding Me");
+            notifi.hideAfter(javafx.util.Duration.seconds(5));
+            notifi.position(Pos.BASELINE_RIGHT);
+
+            notifi.darkStyle();
+            Platform.runLater(()->{
+                notifi.show();
+            });
+
+
+        }));
 
 
 

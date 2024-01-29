@@ -11,16 +11,12 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
-
 public class appinitialize extends Application {
-
-
 double x;
 double y;
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("view/viewForm.fxml")));

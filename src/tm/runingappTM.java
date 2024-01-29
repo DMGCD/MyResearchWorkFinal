@@ -5,6 +5,7 @@ public class runingappTM {
 private String name;
 
     public runingappTM(String name) {
+
         this.setName(name);
     }
 
@@ -17,6 +18,7 @@ private String name;
     }
 
 public String toString(){
+
         return name;
 }
 }
