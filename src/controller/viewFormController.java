@@ -97,7 +97,7 @@ public class viewFormController {
         imgV.setFitWidth(50);
         Notifications notifi = Notifications.create();
         notifi.graphic(imgV);
-        notifi.text("YOU ARE WORK WITH : "+dura);
+        notifi.text("YOU ARE WORK WITH : "+dura );
         notifi.title("REMINDER ARE ACTIVE TIME !");
         notifi.hideAfter(javafx.util.Duration.seconds(2));
         notifi.position(Pos.BASELINE_RIGHT);
