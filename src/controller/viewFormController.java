@@ -8,10 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +29,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+
 public class viewFormController {
     public Button btnActiveOnTime;
     public Label lbltimecurrent;
@@ -42,8 +42,19 @@ public class viewFormController {
     @FXML
     private Label lblontimemaching;
    LocalTime date1;
+    boolean x ;
+    LocalTime startFalse;
+    // Duration time sice first false come to second true;
+    Duration durationTimeFalse;
+    LocalTime activeWorkTimeStart;
+    LocalTime activeWorkTime;
+    Duration activeDura;
+    int breakDuration;
+    int timeActive;
 
     public void initialize(){
+        x=false;
+        lblStopwatched.setText("Description About Mode");
 
         listLoadRunningApp();
         setTimeC();
@@ -104,14 +115,6 @@ public class viewFormController {
         notifi.darkStyle();
         notifi.show();
     }
-// Sound For Notification
-//    private void playNotificationSound()  {
-//
-//            // Replace "notification_sound.mp3" with the actual name of your sound file
-//            String soundFile = "c.png";
-//            String path = getClass().getResource(soundFile).getPath().toString();
-//        System.out.println(path);
-//    }
     public void btnLogOutOnAction(ActionEvent actionEvent) {
         System.exit(0);
     }
@@ -140,64 +143,47 @@ public viewFormController(){
 
         ActionListener al =new ActionListener() {
             Point lastPoint;
-            int i=1;
-            int j=0;
-            long x=0;
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 try {
-                    x+=10;
-                    Thread.sleep(5000);
-
-
+                    Thread.sleep(4500);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
 // mouse moved identification
                 Point p =MouseInfo.getPointerInfo().getLocation();
                 if(!p.equals(lastPoint)){
-                    System.out.println(i);
-                    if(i==5){
-
-                        if(i==2){
-
-
-                        }
-
-
-
-
-                    }
-
-                    i++;
-
+                  x=true;
+                }
+                else {
+                    x=false;
                 }
                 lastPoint=p;
+               // System.out.println(x);
             }
         };
     Timer timer = new Timer(100, al);
     timer.start();
-
-
-
 }
-    public  String [] remind={"All 20 Minites Reminding Me","System process Remind Me"};
+
+//************
+    public  String [] remind={"All 20 Minutes Reminding Me","System process Remind Me"};
     public void cmbxremindingOnAction(ActionEvent event) {
-String remindr= (String) cmbxreminding.getSelectionModel().getSelectedItem();
-
-
-// selected reminder type
-boolean x =false;
-
+                String remindr= (String) cmbxreminding.getSelectionModel().getSelectedItem();
+//************All 20 Minites Reminding Me?
         if(remindr.equals(remind[0])){
+            lblStopwatched.setText("Reminding You, All 20 minutes\nNot Counting Your Time Interval!..");
+            check.stop();
             alt.setCycleCount(Timeline.INDEFINITE);
             alt.play();
-            x=true;
-            Object source = event.getSource();
-
         }
-        else{
+//************System process Remind Me
+        else if(remindr.equals(remind[1])){
+            lblStopwatched.setText("Its Reminding You,\nCounting Your Time Interval!..");
             alt.stop();
+            check.setCycleCount(Timeline.INDEFINITE);
+            check.play();
+
         }
 
 
@@ -206,9 +192,10 @@ boolean x =false;
     public void remidway(){
         cmbxreminding.setItems(FXCollections.observableArrayList(remind));
     }
+    // Notification popup of selected all 20 Times reminding
         Timeline alt =new Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event -> {
 
-            Image img = new Image("image/c.png");
+            Image img = new Image("image/alwas.png");
 
             ImageView imgV =new ImageView(img);
             imgV.setFitHeight(50);
@@ -217,8 +204,8 @@ boolean x =false;
 
             notifi.graphic(imgV);
 
-            notifi.text("Take a Break For Protact Your Helthy.....");
-            notifi.title("MODE : All 20 Minites Reminding Me");
+            notifi.text("Take a Break For Protect Your Health...");
+            notifi.title("MODE : All 20 Minutes Reminding Me");
             notifi.hideAfter(javafx.util.Duration.seconds(5));
             notifi.position(Pos.BASELINE_RIGHT);
 
@@ -230,7 +217,76 @@ boolean x =false;
 
         }));
 
+//**********timely checked Mouse event
+   Timeline check =new   Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event->{
+   //mouse move this if is true and calculate the time
+        if(x){
 
+            activeWorkTimeStart = LocalTime.now();
+           // System.out.println(now);
+            do{
+                {
+                     activeWorkTime = LocalTime.now();
+                     activeDura = Duration.between(activeWorkTimeStart, activeWorkTime);
+
+
+                }
+            }
+            while (!x);
+         int activeDuraTIme= (int) activeDura.getSeconds();
+            if(breakDuration>20){
+                activeDuraTIme=activeDuraTIme-breakDuration;
+                if(activeDuraTIme>30){
+                    System.out.println("time to break");
+                }
+            }
+            else if(activeDuraTIme>20 && breakDuration<20){
+                System.out.println("breakdura kudai get break");
+            }else if(breakDuration>20){
+                System.out.println("are you sleeped");
+            }
+
+
+        }
+   //mouse is not moving
+        else if(x==false){
+            try {
+                startFalse= LocalTime.now();
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        //after 5 second check the mouse are moving
+            if(x==false){
+            // mouse is moving
+
+                if(x==true){
+
+                    startFalse =null;
+
+                }
+                else{
+                    // after 5 second mouse are not moving
+                    while (!x){
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        LocalTime falseDuringTime = LocalTime.now();
+                        durationTimeFalse =Duration.between(startFalse,falseDuringTime);
+                         breakDuration = (int) durationTimeFalse.getSeconds();
+                        if(breakDuration >20){
+
+                            System.out.println("Duration if Grater Than >30 : "+ breakDuration);
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }));
 
 
 }
