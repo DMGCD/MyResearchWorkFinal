@@ -224,27 +224,43 @@ public viewFormController(){
 
             activeWorkTimeStart = LocalTime.now();
            // System.out.println(now);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             do{
                 {
-                     activeWorkTime = LocalTime.now();
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    activeWorkTime = LocalTime.now();
                      activeDura = Duration.between(activeWorkTimeStart, activeWorkTime);
+                    System.out.println(activeDura);
 
 
                 }
             }
-            while (!x);
+            while (x);
          int activeDuraTIme= (int) activeDura.getSeconds();
-            if(breakDuration>20){
-                activeDuraTIme=activeDuraTIme-breakDuration;
-                if(activeDuraTIme>30){
-                    System.out.println("time to break");
-                }
-            }
-            else if(activeDuraTIme>20 && breakDuration<20){
-                System.out.println("breakdura kudai get break");
-            }else if(breakDuration>20){
-                System.out.println("are you sleeped");
-            }
+         if(activeDuraTIme>20){
+             System.out.println("Time is Greter Than 20");
+         }
+//            if(breakDuration>20){
+//                activeDuraTIme=activeDuraTIme-breakDuration;
+//                if(activeDuraTIme>20){
+//                    System.out.println("time to break");
+//                    activeDura=null;
+//                    //give the time for user to get the break
+//                }
+//            }
+//            else if(activeDuraTIme>20 && breakDuration<20){
+//                System.out.println("Mouse freezed time less than 20 get the break");
+//                activeDura=null;
+//                //give the time for user to get the
+//            }
 
 
         }
@@ -269,7 +285,7 @@ public viewFormController(){
                     // after 5 second mouse are not moving
                     while (!x){
                         try {
-                            Thread.sleep(500);
+                            Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
@@ -279,6 +295,9 @@ public viewFormController(){
                         if(breakDuration >20){
 
                             System.out.println("Duration if Grater Than >30 : "+ breakDuration);
+                            if(breakDuration>120){
+
+                            }
                         }
 
 
