@@ -212,8 +212,12 @@ public viewFormController(){
 
     //**********Checked After one seconds wat is the output of x checked Mouse event
     Timeline checkEventMouse =new Timeline(new KeyFrame(javafx.util.Duration.seconds(1),event -> {
+
+        LocalTime stratTimeTrue;
         if(x){
             System.out.println("move "+x);
+           
+
         }
         else{
             System.out.println("not Move "+x);
