@@ -3,6 +3,7 @@ package controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,7 +52,6 @@ public class viewFormController {
     Duration activeDura;
     int breakDuration;
     int timeActive;
-
     public void initialize(){
         x=false;
         lblStopwatched.setText("Description About Mode");
@@ -122,7 +122,6 @@ public class viewFormController {
     public void setTimeC(){
        Thread thread =  new Thread(()->{
           SimpleDateFormat simpleDateFormat =new SimpleDateFormat("hh:mm:ss a");
-
           while(true){
               try {
                   Thread.sleep(1000);
@@ -139,24 +138,24 @@ public class viewFormController {
 thread.start();
     }
     // Event of mouse
+//**********Constructor
 public viewFormController(){
 
         ActionListener al =new ActionListener() {
             Point lastPoint;
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                try {
-                    Thread.sleep(4500);
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
+
 // mouse moved identification
                 Point p =MouseInfo.getPointerInfo().getLocation();
                 if(!p.equals(lastPoint)){
                   x=true;
+
+
                 }
                 else {
                     x=false;
+
                 }
                 lastPoint=p;
                // System.out.println(x);
@@ -165,15 +164,13 @@ public viewFormController(){
     Timer timer = new Timer(100, al);
     timer.start();
 }
-
 //************
     public  String [] remind={"All 20 Minutes Reminding Me","System process Remind Me"};
-    public void cmbxremindingOnAction(ActionEvent event) {
+    public void cmbxremindingOnAction(ActionEvent event) throws InterruptedException {
                 String remindr= (String) cmbxreminding.getSelectionModel().getSelectedItem();
 //************All 20 Minites Reminding Me?
         if(remindr.equals(remind[0])){
             lblStopwatched.setText("Reminding You, All 20 minutes\nNot Counting Your Time Interval!..");
-            check.stop();
             alt.setCycleCount(Timeline.INDEFINITE);
             alt.play();
         }
@@ -181,19 +178,16 @@ public viewFormController(){
         else if(remindr.equals(remind[1])){
             lblStopwatched.setText("Its Reminding You,\nCounting Your Time Interval!..");
             alt.stop();
-            check.setCycleCount(Timeline.INDEFINITE);
-            check.play();
+            checkEventMouse.setCycleCount(Timeline.INDEFINITE);
+            checkEventMouse.play();
 
-        }
-
-
-
+       }
     }
     public void remidway(){
         cmbxreminding.setItems(FXCollections.observableArrayList(remind));
     }
     // Notification popup of selected all 20 Times reminding
-        Timeline alt =new Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event -> {
+        Timeline alt =new Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event2 -> {
 
             Image img = new Image("image/alwas.png");
 
@@ -208,7 +202,6 @@ public viewFormController(){
             notifi.title("MODE : All 20 Minutes Reminding Me");
             notifi.hideAfter(javafx.util.Duration.seconds(5));
             notifi.position(Pos.BASELINE_RIGHT);
-
             notifi.darkStyle();
             Platform.runLater(()->{
                 notifi.show();
@@ -217,95 +210,16 @@ public viewFormController(){
 
         }));
 
-//**********timely checked Mouse event
-   Timeline check =new   Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event->{
-   //mouse move this if is true and calculate the time
+    //**********Checked After one seconds wat is the output of x checked Mouse event
+    Timeline checkEventMouse =new Timeline(new KeyFrame(javafx.util.Duration.seconds(1),event -> {
         if(x){
-
-            activeWorkTimeStart = LocalTime.now();
-           // System.out.println(now);
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            do{
-                {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    activeWorkTime = LocalTime.now();
-                     activeDura = Duration.between(activeWorkTimeStart, activeWorkTime);
-                    System.out.println(activeDura);
-
-
-                }
-            }
-            while (x);
-         int activeDuraTIme= (int) activeDura.getSeconds();
-         if(activeDuraTIme>20){
-             System.out.println("Time is Greter Than 20");
-         }
-//            if(breakDuration>20){
-//                activeDuraTIme=activeDuraTIme-breakDuration;
-//                if(activeDuraTIme>20){
-//                    System.out.println("time to break");
-//                    activeDura=null;
-//                    //give the time for user to get the break
-//                }
-//            }
-//            else if(activeDuraTIme>20 && breakDuration<20){
-//                System.out.println("Mouse freezed time less than 20 get the break");
-//                activeDura=null;
-//                //give the time for user to get the
-//            }
-
-
+            System.out.println("move "+x);
         }
-   //mouse is not moving
-        else if(x==false){
-            try {
-                startFalse= LocalTime.now();
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        //after 5 second check the mouse are moving
-            if(x==false){
-            // mouse is moving
-
-                if(x==true){
-
-                    startFalse =null;
-
-                }
-                else{
-                    // after 5 second mouse are not moving
-                    while (!x){
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
-                        LocalTime falseDuringTime = LocalTime.now();
-                        durationTimeFalse =Duration.between(startFalse,falseDuringTime);
-                         breakDuration = (int) durationTimeFalse.getSeconds();
-                        if(breakDuration >20){
-
-                            System.out.println("Duration if Grater Than >30 : "+ breakDuration);
-                            if(breakDuration>120){
-
-                            }
-                        }
-
-
-                    }
-                }
-            }
+        else{
+            System.out.println("not Move "+x);
         }
     }));
+
 
 
 }
