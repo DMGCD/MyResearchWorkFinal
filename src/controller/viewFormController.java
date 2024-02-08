@@ -3,7 +3,6 @@ package controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,8 +45,8 @@ public class viewFormController {
     boolean x ;
     LocalTime startFalse;
     // Duration time sice first false come to second true;
-    Duration durationTimeFalse;
-    LocalTime activeWorkTimeStart;
+    LocalTime falseStartTime;
+    LocalTime falsedurationTime;
     LocalTime activeWorkTime;
     Duration activeDura;
     int breakDuration;
@@ -150,12 +149,9 @@ public viewFormController(){
                 Point p =MouseInfo.getPointerInfo().getLocation();
                 if(!p.equals(lastPoint)){
                   x=true;
-
-
                 }
                 else {
                     x=false;
-
                 }
                 lastPoint=p;
                // System.out.println(x);
@@ -220,7 +216,8 @@ public viewFormController(){
 
         }
         else{
-            System.out.println("not Move "+x);
+            System.out.println("not move "+x);
+
         }
     }));
 
