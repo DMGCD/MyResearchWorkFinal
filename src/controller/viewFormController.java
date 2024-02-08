@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -43,7 +44,8 @@ public class viewFormController {
     private Label lblontimemaching;
    LocalTime date1;
     boolean move;
-    LocalTime startFalse;
+    int durationTimelastF;
+
     // Duration time sice first false come to second true;
     LocalTime falseStartTime;
     public void initialize(){
@@ -174,7 +176,6 @@ public viewFormController(){
             alt.stop();
             checkEventMouse.setCycleCount(Timeline.INDEFINITE);
             checkEventMouse.play();
-
        }
     }
     public void remidway(){
@@ -205,7 +206,7 @@ public viewFormController(){
         }));
 
     //**********Checked After one seconds wat is the output of x checked Mouse event
-    LocalTime dur;
+    LocalTime durationTimeF;
     Timeline checkEventMouse =new Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event -> {
         if(move){
             System.out.println(move);
@@ -215,13 +216,18 @@ public viewFormController(){
             try {
                 Thread.sleep(5000);
                 if(!move){
+                    int dr=0;
                     while(!move){
-                         dur = LocalTime.now();
-                        Duration between = Duration.between(falseStartTime, dur);
-                        int dr = (int) between.getSeconds();
+                         durationTimeF = LocalTime.now();
+                        Duration between = Duration.between(falseStartTime, durationTimeF);
+                          dr = (int) between.getSeconds();
                         Thread.sleep(1000);
                         System.out.println(dr);
+                        //mouse are not moving and stay one point .stayed time>1minute
+                        this.durationTimelastF =dr;
                     }
+
+                    System.out.println("Duration time is : "+durationTimelastF);
                 }
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -230,6 +236,10 @@ public viewFormController(){
         }
     }));
 
+    Timeline durationFalseChecke = new Timeline(new KeyFrame(javafx.util.Duration.seconds(10),event -> {
+
+        System.out.println("checked duration time of autobrreak!"+durationTimelastF);
+    }));
 
 
 
