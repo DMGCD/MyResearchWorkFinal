@@ -42,17 +42,12 @@ public class viewFormController {
     @FXML
     private Label lblontimemaching;
    LocalTime date1;
-    boolean x ;
+    boolean move;
     LocalTime startFalse;
     // Duration time sice first false come to second true;
     LocalTime falseStartTime;
-    LocalTime falsedurationTime;
-    LocalTime activeWorkTime;
-    Duration activeDura;
-    int breakDuration;
-    int timeActive;
     public void initialize(){
-        x=false;
+        move =false;
         lblStopwatched.setText("Description About Mode");
 
         listLoadRunningApp();
@@ -144,17 +139,20 @@ public viewFormController(){
             Point lastPoint;
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
-
 // mouse moved identification
                 Point p =MouseInfo.getPointerInfo().getLocation();
                 if(!p.equals(lastPoint)){
-                  x=true;
+                  move =true;
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 else {
-                    x=false;
+                    move =false;
                 }
                 lastPoint=p;
-               // System.out.println(x);
             }
         };
     Timer timer = new Timer(100, al);
@@ -183,7 +181,7 @@ public viewFormController(){
         cmbxreminding.setItems(FXCollections.observableArrayList(remind));
     }
     // Notification popup of selected all 20 Times reminding
-        Timeline alt =new Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event2 -> {
+        Timeline alt =new Timeline(new KeyFrame(javafx.util.Duration.seconds(1),event2 -> {
 
             Image img = new Image("image/alwas.png");
 
@@ -207,19 +205,31 @@ public viewFormController(){
         }));
 
     //**********Checked After one seconds wat is the output of x checked Mouse event
-    Timeline checkEventMouse =new Timeline(new KeyFrame(javafx.util.Duration.seconds(1),event -> {
-
-        LocalTime stratTimeTrue;
-        if(x){
-            System.out.println("move "+x);
-           
-
+    LocalTime dur;
+    Timeline checkEventMouse =new Timeline(new KeyFrame(javafx.util.Duration.seconds(5),event -> {
+        if(move){
+            System.out.println(move);
         }
         else{
-            System.out.println("not move "+x);
-
+            falseStartTime =LocalTime.now();
+            try {
+                Thread.sleep(5000);
+                if(!move){
+                    while(!move){
+                         dur = LocalTime.now();
+                        Duration between = Duration.between(falseStartTime, dur);
+                        int dr = (int) between.getSeconds();
+                        Thread.sleep(1000);
+                        System.out.println(dr);
+                    }
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("notMove");
         }
     }));
+
 
 
 
