@@ -169,6 +169,8 @@ public viewFormController(){
             lblStopwatched.setText("Reminding You, All 20 minutes\nNot Counting Your Time Interval!..");
             alt.setCycleCount(Timeline.INDEFINITE);
             alt.play();
+            checkEventMouse.stop();
+            durationFalseChecke.stop();
         }
 //************System process Remind Me
         else if(remindr.equals(remind[1])){
@@ -176,6 +178,9 @@ public viewFormController(){
             alt.stop();
             checkEventMouse.setCycleCount(Timeline.INDEFINITE);
             checkEventMouse.play();
+            durationFalseChecke.setCycleCount(Timeline.INDEFINITE);
+            durationFalseChecke.play();
+
        }
     }
     public void remidway(){
@@ -232,13 +237,15 @@ public viewFormController(){
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("notMove");
+
         }
     }));
 
     Timeline durationFalseChecke = new Timeline(new KeyFrame(javafx.util.Duration.seconds(10),event -> {
 
-        System.out.println("checked duration time of autobrreak!"+durationTimelastF);
+        if(durationTimelastF>20){
+            System.out.println("checked duration time >20 "+durationTimelastF);
+        }
     }));
 
 
